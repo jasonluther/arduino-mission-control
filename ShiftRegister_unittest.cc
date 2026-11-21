@@ -54,5 +54,3 @@ TEST(ShiftRegister, SetBit) {
   reg.set_bit(0, 0, 1);
   EXPECT_EQ(0x80, reg.test_get_contents(0)) << "new value in first byte";
 }
-
-
