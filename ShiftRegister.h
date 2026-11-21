@@ -1,6 +1,6 @@
 #ifndef __SHIFTREGISTER_H
 #define __SHIFTREGISTER_H
-// 4 x TPIC6B595 shift registers chained together 
+// 4 x TPIC6B595 shift registers chained together
 #define NUM_REGISTERS 4
 
 #include "OutputPin.h"

@@ -4,8 +4,8 @@
 #include "AnalogInput.h"
 #include "TimerInput.h"
 #include "Arduino.h"
-#ifdef TESTING 
-#include <iostream>      
+#ifdef TESTING
+#include <iostream>
 #endif
 
 InputManager::InputManager(void) {
@@ -21,12 +21,12 @@ void InputManager::add_input(Input *input) {
     std::cout << "InputManager::add_input(";
     std::cout << input->name() << ", ";
     std::cout << ") #" << _inputs << "\n";
-  #else 
+  #else
     Serial.print("InputManager::add_input(");
     Serial.print(input->name());
     Serial.print(") #");
     Serial.println(_inputs);
-  #endif    
+  #endif
   _inputs++;
   if (_inputs >= NUMINPUTS) {
   #ifdef TESTING
@@ -45,7 +45,7 @@ void InputManager::add_input_with_state(Input *input, State *state, MCEvent_t lo
     std::cout << "InputManager::add_input_with_state(";
     std::cout << input->name() << ", ";
     std::cout << "state, " << low_event << ", " << high_event << ") #" << _inputs << "\n";
-  #else 
+  #else
     Serial.print("InputManager::add_input_with_state(");
     Serial.print(input->name());
     Serial.print(", state, ");
@@ -54,7 +54,7 @@ void InputManager::add_input_with_state(Input *input, State *state, MCEvent_t lo
     Serial.print(high_event);
     Serial.print(") #");
     Serial.println(_inputs);
-  #endif    
+  #endif
   _inputs++;
 }
 
@@ -68,7 +68,7 @@ void InputManager::update(void) {
   for (int i = 0; i < _inputs; i++) {
     _input[i]->read_and_set_value();
     int value = _input[i]->value();
-    #ifdef TESTING 
+    #ifdef TESTING
       if (_input[i]->changed()) {
         std::cout << _input[i]->name() << " = " << value << " #" << i << "\n";
       }
@@ -96,4 +96,3 @@ void InputManager::update(void) {
     }
   }
 }
-
