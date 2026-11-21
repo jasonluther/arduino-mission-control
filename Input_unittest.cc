@@ -14,7 +14,7 @@ TEST(InputTest, DigitalInput) {
   DigitalInput input3(3, "Input 3");
   pinMode(3, INPUT);
   set_pin_for_test(3, HIGH);
-  
+
   input3.read_and_set_value();
   EXPECT_EQ(HIGH, input3.value()) << "read the value";
 
@@ -33,7 +33,7 @@ TEST(InputTest, AnalogInput) {
   AnalogInput input2(2, "Input A2");
   pinMode(A2, INPUT);
   set_pin_for_test(A2, 128);
-  
+
   input2.read_and_set_value();
   EXPECT_EQ(128, input2.value()) << "read the value";
 
@@ -63,21 +63,21 @@ TEST(InputTest, AnalogInputAsDigital) {
 TEST(InputManager, TestInputManager) {
   InputManager m;
 
-  DigitalInput d2 = DigitalInput(A2, "Yellow Button"); 
+  DigitalInput d2 = DigitalInput(A2, "Yellow Button");
   m.add_input(&d2);
-  DigitalInput d3 = DigitalInput(A3, "Red Button"); 
+  DigitalInput d3 = DigitalInput(A3, "Red Button");
   m.add_input(&d3);
-  DigitalInput d4 = DigitalInput(A4, "Green Button"); 
+  DigitalInput d4 = DigitalInput(A4, "Green Button");
   m.add_input(&d4);
-  DigitalInput d6 = DigitalInput(11, "Arm Switch"); 
+  DigitalInput d6 = DigitalInput(11, "Arm Switch");
   m.add_input(&d6);
-  DigitalInput d7 = DigitalInput(12, "Right Switch"); 
+  DigitalInput d7 = DigitalInput(12, "Right Switch");
   m.add_input(&d7);
-  DigitalInput d8 = DigitalInput(2, "Left Switch"); 
+  DigitalInput d8 = DigitalInput(2, "Left Switch");
   m.add_input(&d8);
-  AnalogInput a1 = AnalogInput(0, "Black Knob"); 
+  AnalogInput a1 = AnalogInput(0, "Black Knob");
   m.add_input(&a1);
-  AnalogInput a2 = AnalogInput(5, "Silver Knob"); 
+  AnalogInput a2 = AnalogInput(5, "Silver Knob");
   m.add_input(&a2);
 
   m.setup();
@@ -92,10 +92,10 @@ TEST(InputManager, StateManagement) {
   InputManager m;
   LaunchState launchState;
 
-  DigitalInput d1 = DigitalInput(A1, "Launch Button"); 
+  DigitalInput d1 = DigitalInput(A1, "Launch Button");
   m.add_input_with_state(&d1, &launchState, EVENT_LAUNCH, EVENT_NOOP);
 
-  DigitalInput d5 = DigitalInput(3, "Key Switch"); 
+  DigitalInput d5 = DigitalInput(3, "Key Switch");
   m.add_input_with_state(&d5, &launchState, EVENT_DISARM, EVENT_ARM);
 
   m.setup();
@@ -120,7 +120,7 @@ TEST(InputManager, Timer) {
   InputManager m;
   LaunchState launchState;
   set_millis_for_test(0);
-  
+
   TimerInput t = TimerInput("A Timer");
   m.add_input_with_state(&t, &launchState, EVENT_NOOP, EVENT_TIMER_EXPIRED);
 
@@ -142,4 +142,3 @@ TEST(InputManager, Timer) {
   m.update();
   EXPECT_EQ(LOW, t.value());
 }
-

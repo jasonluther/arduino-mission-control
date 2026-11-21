@@ -5,7 +5,7 @@
 TEST(OutputPinTest, OutputPinInterface) {
   OutputPin analog_pin_two(A2); // "Output Pin A2"
   OutputPin digital_pin_three(3); // "Output Pin 3 (PWM)"
-  
+
   analog_pin_two.setup();
   digital_pin_three.setup();
 
@@ -24,5 +24,3 @@ TEST(OutputPinTest, OutputPinInterface) {
   EXPECT_EQ(LOW, digitalRead(A2)) << "A2 should be LOW";
   EXPECT_EQ(1, analogRead(3)) << "2 should be PWM 1";
 }
-
-

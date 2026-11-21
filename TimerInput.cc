@@ -1,7 +1,7 @@
 #include "TimerInput.h"
 #include "Input.h"
 #include "Arduino.h"
-#ifdef TESTING 
+#ifdef TESTING
 #include <iostream>
 #endif
 
@@ -12,7 +12,7 @@ TimerInput::~TimerInput() {}
 void TimerInput::read_and_set_value(void) {
     #ifdef TESTING
     //std::cout << "TimerInput::read_and_set_value(void)\n";
-    #else 
+    #else
     //Serial.println("TimerInput::read_and_set_value(void)");
     #endif
   int prev_value = Input::value();
@@ -23,13 +23,13 @@ void TimerInput::read_and_set_value(void) {
   } else if (time_now > _millis_at_start + _timer_millis) {
     #ifdef TESTING
     std::cout << "Timer should go off!\n";
-    #else 
+    #else
     Serial.println("Timer should go off!");
     #endif
     if (prev_value == HIGH) {
       #ifdef TESTING
       std::cout << ("\tTimer was HIGH last time.\n");
-      #else 
+      #else
       Serial.println("\tTimer was HIGH last time.");
       #endif
       // Someone should have noticed that the timer went off.
@@ -39,7 +39,7 @@ void TimerInput::read_and_set_value(void) {
     } else {
       #ifdef TESTING
       std::cout << "\tFirst time.\n";
-      #else 
+      #else
       Serial.println("\tFirst time.");
       #endif
       cur_value = HIGH;
@@ -53,7 +53,7 @@ void TimerInput::read_and_set_value(void) {
 void TimerInput::setup(void) {
   #ifdef TESTING
   std::cout << "TimerInput::setup()\n";
-  #else 
+  #else
   Serial.println("TimerInput::setup()");
   #endif
   _millis_at_start = 0;
@@ -64,7 +64,7 @@ void TimerInput::setup(void) {
 
 void TimerInput::set_timer(unsigned long timer_millis) {
   #ifdef TESTING
-  #else 
+  #else
   Serial.println("TimerInput::set_timer()");
   #endif
   _millis_at_start = millis();

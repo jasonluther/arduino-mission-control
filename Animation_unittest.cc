@@ -70,5 +70,3 @@ TEST(AnimationTest, OneFrameAnimation) {
   oneframe.animate(20000);
   EXPECT_EQ('J', oneframe.get_content()) << "still the same frame";
 }
-
-

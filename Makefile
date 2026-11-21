@@ -70,7 +70,7 @@ gtest.a : gtest-all.o
 gtest_main.a : gtest-all.o gtest_main.o
 	$(AR) $(ARFLAGS) $@ $^
 
-# Build the tests 
+# Build the tests
 
 Arduino.o : Arduino.c Arduino.h
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c Arduino.c
@@ -90,7 +90,7 @@ TimerInput.o : TimerInput.cc TimerInput.h Input.cc Input.h
 DigitalInput.o : DigitalInput.cc DigitalInput.h Input.cc Input.h
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c DigitalInput.cc
 
-Input_unittest.o : Input_unittest.cc 
+Input_unittest.o : Input_unittest.cc
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c Input_unittest.cc
 
 Input_unittest : Input.o AnalogInput.o DigitalInput.o TimerInput.o Input_unittest.o gtest_main.a Arduino.o InputManager.o State.o LaunchState.o
@@ -99,7 +99,7 @@ Input_unittest : Input.o AnalogInput.o DigitalInput.o TimerInput.o Input_unittes
 OutputPin.o : OutputPin.cc OutputPin.h Arduino.h
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c OutputPin.cc
 
-OutputPin_unittest.o : OutputPin_unittest.cc 
+OutputPin_unittest.o : OutputPin_unittest.cc
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c OutputPin_unittest.cc
 
 OutputPin_unittest : OutputPin.o OutputPin_unittest.o gtest_main.a Arduino.o
@@ -108,7 +108,7 @@ OutputPin_unittest : OutputPin.o OutputPin_unittest.o gtest_main.a Arduino.o
 ShiftRegister.o : ShiftRegister.cc ShiftRegister.h Arduino.h
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c ShiftRegister.cc
 
-ShiftRegister_unittest.o : ShiftRegister_unittest.cc 
+ShiftRegister_unittest.o : ShiftRegister_unittest.cc
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c ShiftRegister_unittest.cc
 
 ShiftRegister_unittest : ShiftRegister.o ShiftRegister_unittest.o gtest_main.a Arduino.o OutputPin.o
@@ -120,7 +120,7 @@ LaunchState.o : LaunchState.cc LaunchState.h State.cc State.h MCState_t.h MCEven
 State.o : State.cc State.h MCState_t.h MCEvent_t.h
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c State.cc
 
-State_unittest.o : State_unittest.cc 
+State_unittest.o : State_unittest.cc
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c State_unittest.cc
 
 State_unittest : LaunchState.o State.o State_unittest.o gtest_main.a
@@ -153,4 +153,3 @@ sample1_unittest.o : $(USER_DIR)/sample1_unittest.cc \
 
 sample1_unittest : sample1.o sample1_unittest.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
-

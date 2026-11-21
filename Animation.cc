@@ -20,7 +20,7 @@ void Animation::animate(unsigned long now) {
     while (1) {
       advance_current_frame();
       if (time_left < (unsigned long)_duration[_current_frame]) {
-        _time_to_start_next_frame = 
+        _time_to_start_next_frame =
           now + (_duration[_current_frame] - time_left);
         break;
       } else {

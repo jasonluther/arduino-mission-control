@@ -1,3 +1,3 @@
 # To-Do List
 
-* Linear speed control for RADAR display.
+- Linear speed control for RADAR display.

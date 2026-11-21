@@ -17,11 +17,10 @@ TEST(SongTest, Play) {
 
   s.play(&pin, now);
   /* Use digitalRead() as part of our Arduino mock testing interface. */
-  EXPECT_EQ(NOTE_G3, digitalRead(13)) << "First note"; 
+  EXPECT_EQ(NOTE_G3, digitalRead(13)) << "First note";
   s.play(&pin, now + 110);
   EXPECT_EQ(NOTE_B3, digitalRead(13)) << "Second note";
   s.play(&pin, now + 450);
   s.play(&pin, now + 500);
   EXPECT_EQ(0, digitalRead(13)) << "Should be off";
 }
-

@@ -31,7 +31,7 @@ void ShiftRegister::shift_out(void) {
     _RCK->set_low();
     for (int byte = (NUM_REGISTERS - 1); byte >= 0; byte--) {
       for (int bit = 7; bit >= 0; bit--) {
-        bool x = (contents[byte] >> (7 - bit)) & 0x1; 
+        bool x = (contents[byte] >> (7 - bit)) & 0x1;
         _SRCK->set_low();
         _SERIAL->set(x);
         _SRCK->set_high();
@@ -46,4 +46,3 @@ void ShiftRegister::shift_out(void) {
 unsigned char ShiftRegister::test_get_contents(int byte) {
   return contents[byte];
 }
-

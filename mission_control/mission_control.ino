@@ -70,11 +70,11 @@ Song songCountdown(count_notes, count_song, count_duration);
 
 // 16-segment display
 const int digits_frames = 17;
-const int digits_byte1[digits_frames] = 
+const int digits_byte1[digits_frames] =
   { 41, 176, 188, 128, 188, 180, 48, 148, 156, 1, 172, 64, 172, 64, 172, 64, 172 };
-const int digits_byte2[digits_frames] = 
+const int digits_byte2[digits_frames] =
   { 181, 60, 61, 52, 45, 45, 28, 61, 57, 128, 53, 64, 53, 64, 53, 64, 53 };
-const int digits_duration[digits_frames] = 
+const int digits_duration[digits_frames] =
   { 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 500, 1000, 500, 1000, 500, 10000 };
 Animation digitsByte1(digits_frames, digits_byte1, digits_duration);
 Animation digitsByte2(digits_frames, digits_byte2, digits_duration);
@@ -123,11 +123,11 @@ Animation disabledByte1(disabled_frames, disabled_byte1, disabled_duration);
 Animation disabledByte2(disabled_frames, disabled_byte2, disabled_duration);
 
 const int at_zero_frames = 12;
-const int at_zero1[at_zero_frames] = 
+const int at_zero1[at_zero_frames] =
   { 128, 0, 0, 0, 0, 4, 8, 32, 172, 64, 172, 64, };
-const int at_zero2[at_zero_frames] = 
+const int at_zero2[at_zero_frames] =
   { 0, 32, 16, 4, 1, 0, 0, 0, 53, 64, 53, 64 };
-const int at_zero_duration[at_zero_frames] = 
+const int at_zero_duration[at_zero_frames] =
   { 50, 50, 50, 50, 50, 50, 50, 50, 100, 100, 100, 100 };
 Animation atZeroByte1(at_zero_frames, at_zero1, at_zero_duration);
 Animation atZeroByte2(at_zero_frames, at_zero2, at_zero_duration);
@@ -175,14 +175,14 @@ void setup() {
     reg.set_byte(i, 0);
   }
   reg.shift_out();
-  
+
   // The "other" RGB LED is too bright at full +5v duty cycle, so use PWM to dim it.
   pinOtherRGBShift.setup();
   pinOtherRGBShift.set_pwm(64);
-  
+
   previousLaunchState = STATE_OFF;
   if (inputArmSwitch.value() == LOW) {
-    launchState.handle_event(EVENT_ARM); 
+    launchState.handle_event(EVENT_ARM);
   }
 }
 
@@ -198,9 +198,9 @@ void loop() {
     Serial.print(previousLaunchState);
     Serial.print(" to ");
     Serial.println(currentLaunchState);
-    
+
     previousLaunchState = currentLaunchState;
-    int red = 0; int green = 0; int blue = 0; 
+    int red = 0; int green = 0; int blue = 0;
     int relay_on = 0;
 
     switch(currentLaunchState) {
@@ -257,7 +257,7 @@ void loop() {
         currentLaunchLedAnimation = &launchLedOff;
         red = 1; green = 1; blue = 1;
         relay_on = 0;
-        break;      
+        break;
     }
     current16SegmentAnimationByte1->reset();
     current16SegmentAnimationByte2->reset();
@@ -279,11 +279,11 @@ void loop() {
     currentRadarAnimation = &radarByteOut;
   }  int black_knob_value = map(inputBlackKnob.value(), 0, 1023, 50, 500);
   for (int i = 0; i < radar_frames; i++) {
-    radar_duration[i] = black_knob_value; 
+    radar_duration[i] = black_knob_value;
   }
   currentRadarAnimation->animate(now);
   reg.set_byte(2, (unsigned char)currentRadarAnimation->get_content());
-  
+
   int hue = map(inputSilverKnob.value(), 0, 1023, 0, 359);
   set_rgb_from_hue(&pinRgbRed, &pinRgbGreen, &pinRgbBlue, hue);
 
@@ -303,9 +303,7 @@ void loop() {
   reg.set_bit(3, 4, (unsigned char)currentLaunchLedAnimation->get_content());
 
   reg.shift_out();
-    
+
   delay(20);
 
 }
-
-
