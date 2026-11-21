@@ -4,7 +4,7 @@ I'm using [Google Test](https://code.google.com/p/googletest/) for unit testing,
 
 Here are some things to keep in mind when using this with Arduino:
 
-##### Editing files
+#### Editing files
 
 My C++ source files are all named with a `.cc` extension. That worked great while testing, but it was a pain when it came time to use the files in the Arduino IDE.
 
@@ -14,7 +14,7 @@ This scheme works fine because I was editing the `.cc` files with vim, not the A
 
 A less lazy person might just [forego the IDE](http://playground.arduino.cc/Learning/CommandLine).
 
-##### Mock Arduino.h
+#### Mock Arduino.h
 
 Because I am not doing anything particularly complicated with the Arduino's I/O pins, it was straightforward to create a mock interface to the basic functions in `Arduino.h`.
 
@@ -26,6 +26,6 @@ My mock `Arduino.c` implementation allows me to set the result of `analogRead()`
     EXPECT_EQ(STATE_LAUNCHING, launchState.get_current_state()) << "Launch button";
     ...
 
-##### Putting it together
+#### Putting it together
 
 I've tried to keep the actual `.ino` file simple so that it doesn't need its own tests and is mostly made up of calls to the unit-tested code.
