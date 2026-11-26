@@ -3,3 +3,8 @@
 *.[ao]
 *_unittest
 *.gch
+
+# Secrets: never commit local environment files
+.env
+.env.*
+!.env.example
